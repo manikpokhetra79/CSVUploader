@@ -8,4 +8,5 @@ router.get('/displayfiles', csvController.displayfiles);
 
 //action routes
 router.post('/upload', csvController.upload);
+router.get('/delete/:id', csvController.deleteFile);
 module.exports = router;
