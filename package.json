@@ -1,0 +1,22 @@
+{
+  "name": "csv-uploader",
+  "version": "1.0.0",
+  "description": "A simple CSV uploader app created with HTML, CSS and JavaScript NODEJS",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manikpokhetra79/CSVUploader.git"
+  },
+  "author": "Manik Pokhetra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manikpokhetra79/CSVUploader/issues"
+  },
+  "homepage": "https://github.com/manikpokhetra79/CSVUploader#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
