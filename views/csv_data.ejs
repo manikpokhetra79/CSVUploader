@@ -1,0 +1,31 @@
+<p>
+  Filter data :
+  <input type="text" id="input" placeholder="Search for names.. " />
+</p>
+<table id="table" class="csv">
+  <thead>
+    <% for(let i in data){%>
+    <tr>
+      <% let value = data[i] %>
+      <!-- inner loop for accessing headings -->
+      <% for(let j in value){%>
+      <th><%=j%></th>
+      <%}%> <%break%>
+    </tr>
+    <%}%>
+  </thead>
+  <tbody>
+    <% for(let i in data){%>
+    <tr>
+      <% let value = data[i] %>
+      <!-- inner loop for accessing headings -->
+      <% for(let j in value){%>
+      <td><%=value[j]%></td>
+      <%}%>
+    </tr>
+    <%}%>
+  </tbody>
+</table>
+
+<!-- scripts -->
+<script src="/js/helper.js"></script>

@@ -11,6 +11,16 @@ app.set('views', 'views');
 //use express layouts
 app.use(expressLayouts);
 
+//use assets folder
+app.use(express.static('assets'));
+
+//make the uploads path avail to browser
+app.use('/uploads/files/csv', express.static(__dirname + '/uploads/files/csv'));
+
+//extract style and script from sub pages into the layout
+app.set('layout extractStyles', true);
+app.set('layout extractScripts', true);
+
 // homepage route
 app.use('/', require('./routes'));
 // start server

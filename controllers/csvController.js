@@ -1,5 +1,6 @@
 const CSVFile = require('../models/csv');
 const fs = require('fs');
+const parser = require('csv-parser');
 module.exports.uploader = (req, res) => {
   return res.render('csv_uploader', {
     title: 'CSV uploader Page',
@@ -51,6 +52,28 @@ module.exports.deleteFile = async (req, res) => {
   } catch (error) {
     return res.status(500).json({
       message: 'Server Error',
+    });
+  }
+};
+// displaydata action
+module.exports.displayData = async (req, res) => {
+  try {
+    let file = await CSVFile.findById(req.params.id);
+    let path = file.path;
+    let results = [];
+    fs.createReadStream(path)
+      .pipe(parser({ delimiter: ',' }))
+      .on('data', (data) => results.push(data))
+      .on('end', () => {
+        console.log(results);
+        return res.render('csv_data', {
+          title: 'File Data',
+          data: results,
+        });
+      });
+  } catch (error) {
+    return res.status(500).json({
+      message: 'Internal error',
     });
   }
 };
