@@ -1,11 +1,6 @@
 const CSVFile = require('../models/csv');
 const fs = require('fs');
 const parser = require('csv-parser');
-module.exports.uploader = (req, res) => {
-  return res.render('csv_uploader', {
-    title: 'CSV uploader Page',
-  });
-};
 
 module.exports.displayfiles = async (req, res) => {
   let files = await CSVFile.find({});
