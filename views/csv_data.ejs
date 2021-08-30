@@ -16,9 +16,10 @@
           <% for(let i in data){%>
           <tr>
             <% let value = data[i] %>
+            <% let index = 0 %>
             <!-- inner loop for accessing headings -->
             <% for(let j in value){%>
-            <th ><%=j%></th>
+            <th style="cursor:pointer" onclick="sortTable(<%=index++%>)"><%=j%></th>
             <%}%> <%break%>
           </tr>
           <%}%>
