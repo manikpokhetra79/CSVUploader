@@ -4,11 +4,12 @@
 A simple CSV uploader web app which allows to uplaod and view csv files data in table format.
 
 # Features
-Upload.
-View all uploaded files
-Delete files.
-Sort and filter data of CSV Files
-Responsive Design.
+* Upload CSV files.
+* View all uploaded files
+* Delete files.
+* Sort data of CSV Files by clicking on column name.
+* Search box to filter data.
+* Responsive Design.
 
 # Components
 HTML,CSS,Javascript,jQuery
