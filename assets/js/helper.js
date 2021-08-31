@@ -1,17 +1,28 @@
 //filter table rows function
 function filterTable() {
-  $('#input').on('keyup', function () {
-    var value = $(this).val().toLowerCase();
-    $('tbody tr').filter(function () {
-      //hide tr with diff text
-      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+  // $('#input').on('keyup', function () {
+  //   var value = $(this).val().toLowerCase();
+  //   $('tbody tr').filter(function () {
+  //     //hide tr with diff text
+  //     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+  //   });
+  // });
+  const input = document.getElementById('input');
+  let rows = document.querySelectorAll('tbody tr');
+  input.addEventListener('keyup', function (e) {
+    const text = e.target.value.toLowerCase();
+    rows.forEach((row) => {
+      row.querySelector('td').textContent.toLowerCase().startsWith(text)
+        ? (row.style.display = '')
+        : (row.style.display = 'none');
     });
   });
 }
 $(filterTable());
 
-// pagination function
+//filter table
 
+// Sort Table function
 function sortTable(n) {
   let table,
     rows,
