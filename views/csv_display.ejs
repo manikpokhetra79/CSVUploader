@@ -10,13 +10,18 @@
     <ul class="list-group">
       <% for(let file of files){%>
       <li class="list-group-item d-flex justify-content-between">
-        <div class="col-md-6">
+        <div class="col-md-4">
           <a
             class="text-primary fs-4 text-capitalize"
             href="/csv/displayData/<%=file.id%>"
           >
             <%= file.originalname%>
           </a>
+        </div>
+        <div class="col-md-2">
+          <button type="button" class="btn btn-secondary">
+            <a href="/csv/displayData/<%=file.id%>"  class="link-light">View file</a>
+          </button>
         </div>
         <div class="col-md-2">
           <button type="button" class="btn btn-danger">
