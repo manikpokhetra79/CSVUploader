@@ -1,12 +1,6 @@
+//custom search and sort functions
 //filter table rows function
 function filterTable() {
-  // $('#input').on('keyup', function () {
-  //   var value = $(this).val().toLowerCase();
-  //   $('tbody tr').filter(function () {
-  //     //hide tr with diff text
-  //     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-  //   });
-  // });
   const input = document.getElementById('input');
   let rows = document.querySelectorAll('tbody tr');
   input.addEventListener('keyup', function (e) {
