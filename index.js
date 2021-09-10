@@ -1,5 +1,6 @@
 const express = require('express');
 const port = process.env.PORT || 8000;
+const cors = require('cors');
 const app = express();
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
@@ -38,7 +39,8 @@ app.use('/uploads/files/csv', express.static(__dirname + '/uploads/files/csv'));
 //extract style and script from sub pages into the layout
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
-
+// use cors
+app.use(cors());
 // homepage route
 app.use('/', require('./routes'));
 // start server
