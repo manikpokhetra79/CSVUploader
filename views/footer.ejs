@@ -9,4 +9,29 @@
   ></script>
   <!-- bootstrap table -->
   <script src="https://unpkg.com/bootstrap-table@1.18.3/dist/bootstrap-table.min.js"></script>
+  <script>
+    <%if(flash.success && flash.success.length ){%>
+      new Noty({
+        theme : 'relax',
+        text : '<%= flash.success%>',
+        type : 'success',
+        layout : 'topRight',
+        timeout : 1500,
+        closeWith: ['click', 'button'],
+
+    }).show();
+        <%}%>
+        <%if(flash.error && flash.error.length ){%>
+         // error flash
+    new Noty({
+        theme : 'relax',
+        text : '<%= flash.error%>',
+        type : 'error',
+        layout : 'topRight',
+        timeout : 1500,
+        closeWith: ['click', 'button'],
+
+    }).show();
+    <%}%>
+  </script>
 </footer>

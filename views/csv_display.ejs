@@ -8,7 +8,7 @@
 <div class="container">
   <div class="row">
     <ul class="list-group">
-      <% for(let file of files){%>
+      <% if(files.length > 0){%> <% for(let file of files){%>
       <li class="list-group-item d-flex justify-content-between">
         <div class="col-md-4">
           <a
@@ -20,15 +20,19 @@
         </div>
         <div class="col-md-2">
           <button type="button" class="btn btn-secondary">
-            <a href="/csv/displayData/<%=file.id%>"  class="link-light">View file</a>
+            <a href="/csv/displayData/<%=file.id%>" class="link-light"
+              >View file</a
+            >
           </button>
         </div>
         <div class="col-md-2">
           <button type="button" class="btn btn-danger">
-            <a href="/csv/delete/<%=file.id%>"  class="link-light">Delete</a>
+            <a href="/csv/delete/<%=file.id%>" class="link-light">Delete</a>
           </button>
         </div>
       </li>
+      <%}%> <%}else{%>
+      <h2 class="text-info">No files have been uploaded yet !!!</h2>
       <%}%>
     </ul>
   </div>

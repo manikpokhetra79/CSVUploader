@@ -11,27 +11,46 @@ module.exports.displayfiles = async (req, res) => {
 };
 
 //upload csv file action
-module.exports.upload = async (req, res) => {
-  try {
-    CSVFile.uploadedFile(req, res, async (err) => {
-      if (req.file) {
-        let file = await CSVFile.create(req.file);
-        return res.status(200).json({
-          file: file,
-        });
-      } else {
-        return res.status(400).json({
-          message: err,
-        });
-      }
-    });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      message: 'Internal Server Error',
-    });
-  }
+module.exports.upload = (req, res) => {
+  CSVFile.uploadedFile(req, res, (err) => {
+    if (req.file) {
+      CSVFile.create(req.file, function (err, csv) {
+        if (err) {
+          req.flash('error', 'Not uploaded!');
+          console.log('error in craeting file', err);
+          return res.redirect('back');
+        }
+        req.flash('success', 'File successfully uploaded');
+        return res.redirect('back');
+      });
+    } else {
+      req.flash('error', 'Error Unsupported File Format');
+
+      return res.redirect('back');
+    }
+  });
 };
+// module.exports.upload = async (req, res) => {
+//   try {
+//     CSVFile.uploadedFile(req, res, async (err) => {
+//       if (req.file) {
+//         let file = await CSVFile.create(req.file);
+//         return res.status(200).json({
+//           file: file,
+//         });
+//       } else {
+//         return res.status(400).json({
+//           message: err,
+//         });
+//       }
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     return res.status(500).json({
+//       message: 'Internal Server Error',
+//     });
+//   }
+// };
 
 //action for deleting csv
 module.exports.deleteFile = async (req, res) => {
@@ -41,13 +60,10 @@ module.exports.deleteFile = async (req, res) => {
       fs.unlinkSync(file.path);
       file.remove();
     }
-    return res.status(200).json({
-      message: 'File Deleted',
-    });
+    req.flash('success', 'File Deleted');
+    return res.redirect('back');
   } catch (error) {
-    return res.status(500).json({
-      message: 'Server Error',
-    });
+    return res.redirect('back');
   }
 };
 // displaydata action

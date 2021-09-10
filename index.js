@@ -1,9 +1,17 @@
 const express = require('express');
-const port = 8000;
-const expressLayouts = require('express-ejs-layouts');
-const db = require('./config/mongoose');
+const port = process.env.PORT || 8000;
 const app = express();
+const expressLayouts = require('express-ejs-layouts');
 
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+
+const db = require('./config/mongoose');
+const flash = require('connect-flash');
+const customMware = require('./config/middleware');
+
+app.use(express.urlencoded());
+app.use(cookieParser());
 // set up view engine
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -11,9 +19,20 @@ app.set('views', 'views');
 //use express layouts
 app.use(expressLayouts);
 
+//express session
+app.use(
+  session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+//flash messages
+app.use(flash());
+
+app.use(customMware.setFlash);
 //use assets folder
 app.use(express.static('assets'));
-
 //make the uploads path avail to browser
 app.use('/uploads/files/csv', express.static(__dirname + '/uploads/files/csv'));
 
