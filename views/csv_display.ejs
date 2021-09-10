@@ -19,16 +19,16 @@
           </a>
         </div>
         <div class="col-md-2">
-          <button type="button" class="btn btn-secondary">
-            <a href="/csv/displayData/<%=file.id%>" class="link-light"
-              >View file</a
-            >
-          </button>
+          <a href="/csv/displayData/<%=file.id%>" class="link-light"
+            ><button type="button" class="btn btn-secondary">
+              View file
+            </button></a
+          >
         </div>
         <div class="col-md-2">
-          <button type="button" class="btn btn-danger">
-            <a href="/csv/delete/<%=file.id%>" class="link-light">Delete</a>
-          </button>
+          <a href="/csv/delete/<%=file.id%>" class="link-light">
+            <button type="button" class="btn btn-danger">Delete</button>
+          </a>
         </div>
       </li>
       <%}%> <%}else{%>

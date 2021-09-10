@@ -17,7 +17,7 @@ module.exports.upload = (req, res) => {
       CSVFile.create(req.file, function (err, csv) {
         if (err) {
           req.flash('error', 'Not uploaded!');
-          console.log('error in craeting file', err);
+          // console.log('error in craeting file', err);
           return res.redirect('back');
         }
         req.flash('success', 'File successfully uploaded');
@@ -76,7 +76,6 @@ module.exports.displayData = async (req, res) => {
       .pipe(parser({ delimiter: ',' }))
       .on('data', (data) => results.push(data))
       .on('end', () => {
-        console.log(results);
         return res.render('csv_data', {
           title: 'File Data',
           data: results,
