@@ -67,9 +67,28 @@ module.exports.deleteFile = async (req, res) => {
   }
 };
 // displaydata action
-module.exports.displayData = async (req, res) => {
-  try {
-    let file = await CSVFile.findById(req.params.id);
+// module.exports.displayData = async (req, res) => {
+//   try {
+//     let file = await CSVFile.findById(req.params.id);
+//     let path = file.path;
+//     let results = [];
+//     fs.createReadStream(path)
+//       .pipe(parser({ delimiter: ',' }))
+//       .on('data', (data) => results.push(data))
+//       .on('end', () => {
+//         return res.render('csv_data', {
+//           title: 'File Data',
+//           data: results,
+//         });
+//       });
+//   } catch (error) {
+//     return res.status(500).json({
+//       message: 'Internal error',
+//     });
+//   }
+// };
+module.exports.displayData = function (req, res) {
+  CSVFile.findById(req.params.id, function (err, file) {
     let path = file.path;
     let results = [];
     fs.createReadStream(path)
@@ -81,9 +100,5 @@ module.exports.displayData = async (req, res) => {
           data: results,
         });
       });
-  } catch (error) {
-    return res.status(500).json({
-      message: 'Internal error',
-    });
-  }
+  });
 };
