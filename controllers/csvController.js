@@ -95,6 +95,9 @@ module.exports.displayData = function (req, res) {
     fs.createReadStream(path)
       .pipe(parser({ delimiter: ',' }))
       .on('data', (data) => results.push(data))
+      .on('error', function (err) {
+        console.error(err.message);
+      })
       .on('end', () => {
         return res.render('csv_data', {
           title: 'File Data',
