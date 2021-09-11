@@ -21,6 +21,7 @@ module.exports.upload = (req, res) => {
           return res.redirect('back');
         }
         req.flash('success', 'File successfully uploaded');
+        console.log(csv);
         return res.redirect('back');
       });
     } else {
